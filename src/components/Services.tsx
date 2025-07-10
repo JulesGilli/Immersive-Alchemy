@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrainCircuitIcon, GlobeIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 const ServiceCard = ({
   icon,
   title,
@@ -49,9 +50,11 @@ const Services = () => {
           {services.map((service, index) => <ServiceCard key={index} icon={service.icon} title={service.title} description={service.description} />)}
         </div>
         <div className="mt-16 text-center">
-          <button className="border border-[#F4A622] text-[#F4A622] hover:bg-[#F4A622]/10 px-6 py-3 rounded-sm text-lg font-medium transition-all duration-300">
-            Discover All Services
-          </button>
+          <Link to="/services">
+            <button className="border border-[#F4A622] text-[#F4A622] hover:bg-[#F4A622]/10 px-6 py-3 rounded-sm text-lg font-medium transition-all duration-300">
+              Discover All Services
+            </button>
+          </Link>
         </div>
       </div>
     </section>;
