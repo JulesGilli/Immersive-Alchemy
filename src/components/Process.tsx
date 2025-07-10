@@ -1,5 +1,6 @@
 import React from 'react';
 import { BeakerIcon, LightbulbIcon, PuzzleIcon, RocketIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 const ProcessStep = ({
   number,
   icon,
@@ -63,9 +64,11 @@ const Process = () => {
           </div>
         </div>
         <div className="mt-16 text-center">
-          <button className="bg-[#F4A622] hover:bg-[#F4A622]/80 text-black px-6 py-3 rounded-sm text-lg font-medium transition-all duration-300">
-            Start Your Project
-          </button>
+          <Link to="/start-project">
+            <button className="bg-[#F4A622] hover:bg-[#F4A622]/80 text-black px-6 py-3 rounded-sm text-lg font-medium transition-all duration-300">
+              Start Your Project
+            </button>
+          </Link>
         </div>
       </div>
     </section>;

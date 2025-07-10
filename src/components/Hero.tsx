@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 const Hero = () => {
   return <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16">
       <div className="absolute inset-0 z-0">
@@ -40,13 +41,17 @@ const Hero = () => {
             real-time 3D, and innovative solutions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-[#F4A622] hover:bg-[#F4A622]/80 text-black px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300 flex items-center justify-center">
-              Explore Our Work
-              <ChevronRightIcon size={20} className="ml-2" />
-            </button>
-            <button className="border border-[#F4A622] text-[#F4A622] hover:bg-[#F4A622]/10 px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300">
-              Get in Touch
-            </button>
+            <Link to="/work">
+              <button className="bg-[#F4A622] hover:bg-[#F4A622]/80 text-black px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300 flex items-center justify-center">
+                Explore Our Work
+                <ChevronRightIcon size={20} className="ml-2" />
+              </button>
+            </Link>
+            <a href="#contact">
+              <button className="border border-[#F4A622] text-[#F4A622] hover:bg-[#F4A622]/10 px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300">
+                Get in Touch
+              </button>
+            </a>
           </div>
         </div>
       </div>
