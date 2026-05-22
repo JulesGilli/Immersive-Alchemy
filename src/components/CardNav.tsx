@@ -176,7 +176,7 @@ const CardNav: React.FC<CardNavProps> = ({
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
           <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
+            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
             onClick={toggleMenu}
             role="button"
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
@@ -198,17 +198,17 @@ const CardNav: React.FC<CardNavProps> = ({
           <Link
             to="/"
             onClick={closeMenu}
-            className="logo-container flex items-center gap-2 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none"
+            className="logo-container flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             <img src={logo} alt={logoAlt} className="logo h-[32px]" />
             {logoText && (
-              <span className="font-semibold tracking-tight text-white text-[15px] md:text-[17px] whitespace-nowrap">
+              <span className="hidden md:inline font-semibold tracking-tight text-white text-[15px] md:text-[17px] whitespace-nowrap">
                 {logoText}
               </span>
             )}
           </Link>
 
-          <div className="card-nav-cta flex items-center order-3 md:order-none">
+          <div className="card-nav-cta flex items-center">
             {cta}
           </div>
         </div>
