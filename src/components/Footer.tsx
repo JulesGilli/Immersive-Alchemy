@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <img src="/ima-logo.svg" alt="Immersive Alchemy logo" className="h-10 w-auto mr-3" />
+              <img src={`${import.meta.env.BASE_URL}ima-logo.svg`} alt="Immersive Alchemy logo" className="h-10 w-auto mr-3" />
               <span className="text-xl font-bold">Immersive Alchemy</span>
             </div>
             <p className="text-gray-400 mb-4 max-w-md">
