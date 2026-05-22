@@ -198,7 +198,7 @@ const CardNav: React.FC<CardNavProps> = ({
           <Link
             to="/"
             onClick={closeMenu}
-            className="logo-container flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="logo-container hidden md:flex items-center gap-2 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             <img src={logo} alt={logoAlt} className="logo h-[32px]" />
             {logoText && (
