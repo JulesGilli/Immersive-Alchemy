@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MailIcon, SendIcon, CheckIcon } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
 import SpotlightButton from '../components/SpotlightButton';
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,15 +25,15 @@ const Contact = () => {
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = t('contact.errors.name');
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('contact.errors.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = t('contact.errors.emailInvalid');
     }
     if (!formData.message.trim()) {
-      newErrors.message = 'Please tell us a bit about your project';
+      newErrors.message = t('contact.errors.message');
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -54,22 +56,20 @@ const Contact = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#F4A622]/20 mb-6">
               <CheckIcon size={40} className="text-[#F4A622]" />
             </div>
-            <h1 className="text-3xl font-bold mb-4">Message sent!</h1>
+            <h1 className="text-3xl font-bold mb-4">{t('contact.successTitle')}</h1>
             <p className="text-gray-300 mb-8">
-              Thanks for reaching out. I'll get back to you within 1-2 business
-              days to talk about your project.
+              {t('contact.successText')}
             </p>
             <SpotlightButton to="/" variant="primary">
-              Back to Home
+              {t('contact.backHome')}
             </SpotlightButton>
           </div> : <>
             <div className="text-center mb-12">
               <h1 className="text-4xl font-bold mb-4">
-                Get in <span className="text-[#F4A622]">Touch</span>
+                {t('contact.title1')} <span className="text-[#F4A622]">{t('contact.title2')}</span>
               </h1>
               <p className="text-gray-300">
-                Tell me about your project and I'll get back to you to discuss
-                how we can bring it to life.
+                {t('contact.subtitle')}
               </p>
             </div>
             <GlowCard borderRadius={16} className="p-8">
@@ -77,28 +77,28 @@ const Contact = () => {
                 <div className="space-y-6">
                   <div>
                     <label className="block text-white font-medium mb-2" htmlFor="name">
-                      Name
+                      {t('contact.name')}
                     </label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className={`w-full bg-black border ${errors.name ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="Your name" />
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className={`w-full bg-black border ${errors.name ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder={t('contact.namePlaceholder')} />
                     {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                   </div>
                   <div>
                     <label className="block text-white font-medium mb-2" htmlFor="email">
-                      Email
+                      {t('contact.email')}
                     </label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={`w-full bg-black border ${errors.email ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="your@email.com" />
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={`w-full bg-black border ${errors.email ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder={t('contact.emailPlaceholder')} />
                     {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                   </div>
                   <div>
                     <label className="block text-white font-medium mb-2" htmlFor="message">
-                      Your project
+                      {t('contact.project')}
                     </label>
-                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} className={`w-full bg-black border ${errors.message ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="Describe your idea, goals, and anything useful to know..." />
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} className={`w-full bg-black border ${errors.message ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder={t('contact.projectPlaceholder')} />
                     {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                   </div>
                 </div>
                 <SpotlightButton type="submit" variant="primary" size="lg" fullWidth className="mt-8">
-                  Send Message
+                  {t('contact.send')}
                   <SendIcon size={18} className="ml-2" />
                 </SpotlightButton>
               </form>

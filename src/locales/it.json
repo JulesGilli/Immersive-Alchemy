@@ -1,0 +1,109 @@
+{
+  "language": "Lingua",
+  "nav": {
+    "explore": "Esplora",
+    "services": "Servizi",
+    "contact": "Contatto",
+    "home": "Home",
+    "allServices": "Tutti i servizi",
+    "sendMessage": "Invia un messaggio",
+    "email": "E-mail"
+  },
+  "hero": {
+    "prefix": "Creiamo esperienze",
+    "suffix": "",
+    "rotating": ["immersive", "interattive", "in 3D in tempo reale", "gamificate"],
+    "subtitle": "Trasformiamo le idee in esperienze digitali immersive attraverso tecnologia interattiva e 3D in tempo reale.",
+    "discover": "Scopri i nostri servizi",
+    "getInTouch": "Contattaci"
+  },
+  "home": {
+    "servicesHeading": "I nostri servizi",
+    "servicesText": "Trasformiamo le idee in esperienze digitali immersive attraverso un insieme mirato di servizi specializzati.",
+    "discoverAll": "Vedi tutti i servizi"
+  },
+  "servicesPage": {
+    "title": "I nostri servizi",
+    "subtitle": "Un insieme mirato di servizi di tecnologia immersiva per dare vita alle tue idee.",
+    "keyFeatures": "Caratteristiche chiave",
+    "learnMore": "Scopri di più",
+    "ctaHeading": "Hai un progetto in mente?",
+    "ctaText": "Parliamo di come questi servizi possono aiutarti a raggiungere i tuoi obiettivi.",
+    "ctaButton": "Inizia una conversazione"
+  },
+  "serviceDetail": {
+    "back": "Torna ai servizi",
+    "overview": "Panoramica",
+    "ourProcess": "Il nostro processo",
+    "keyBenefits": "Vantaggi chiave",
+    "keyFeatures": "Caratteristiche chiave",
+    "requestConsultation": "Richiedi una consulenza",
+    "exploreOther": "Vedi altri servizi",
+    "ctaHeading": "Pronto a parlare del tuo progetto?",
+    "ctaText": "Parliamo di come i nostri servizi {{service}} possono aiutarti a raggiungere i tuoi obiettivi.",
+    "contactUs": "Contattaci",
+    "notFoundTitle": "Servizio non trovato",
+    "notFoundText": "Il servizio che cerchi non esiste o è stato rimosso."
+  },
+  "contact": {
+    "title1": "Mettiti in",
+    "title2": "contatto",
+    "subtitle": "Parlami del tuo progetto e ti risponderò per discutere come dargli vita.",
+    "name": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "email": "E-mail",
+    "emailPlaceholder": "tua@email.com",
+    "project": "Il tuo progetto",
+    "projectPlaceholder": "Descrivi la tua idea, i tuoi obiettivi e tutto ciò che è utile sapere...",
+    "send": "Invia messaggio",
+    "successTitle": "Messaggio inviato!",
+    "successText": "Grazie per avermi scritto. Ti risponderò entro 1-2 giorni lavorativi per parlare del tuo progetto.",
+    "backHome": "Torna alla home",
+    "errors": {
+      "name": "Il nome è obbligatorio",
+      "emailRequired": "L'e-mail è obbligatoria",
+      "emailInvalid": "L'e-mail non è valida",
+      "message": "Raccontaci brevemente il tuo progetto"
+    }
+  },
+  "footer": {
+    "tagline": "Trasformiamo le esperienze digitali attraverso tecnologia interattiva, 3D in tempo reale e soluzioni innovative.",
+    "quickLinks": "Link rapidi",
+    "servicesTitle": "Servizi",
+    "rights": "Tutti i diritti riservati."
+  },
+  "services": {
+    "interactive": {
+      "title": "Esperienze interattive",
+      "description": "Creiamo soluzioni digitali coinvolgenti che catturano il pubblico grazie a un'interattività immersiva e a un design responsive. Le nostre esperienze interattive sono pensate per raggiungere obiettivi di business precisi offrendo al contempo percorsi utente memorabili.",
+      "features": ["Approccio di design centrato sull'utente", "Compatibilità multipiattaforma", "Schemi di interazione coinvolgenti", "Ottimizzazione delle prestazioni", "Conformità all'accessibilità"],
+      "longDescription": "Le nostre esperienze interattive uniscono tecnologia all'avanguardia e design curato per creare soluzioni digitali che catturano e coinvolgono gli utenti. Ci concentriamo su interfacce intuitive e responsive che guidano gli utenti attraverso interazioni significative raggiungendo al contempo obiettivi di business precisi. Ogni esperienza è progettata per essere memorabile, accessibile e ottimizzata nelle prestazioni su tutte le piattaforme.",
+      "process": ["Scoperta e strategia: comprendere i tuoi obiettivi, il tuo pubblico e le tue esigenze", "Concettualizzazione: sviluppare concept interattivi e percorsi utente", "Prototipazione: creare prototipi funzionali per testare e perfezionare", "Sviluppo: costruire l'esperienza pensando a prestazioni e scalabilità", "Test e ottimizzazione: garantire un funzionamento fluido e un'esperienza ottimale", "Lancio e supporto: rilasciare la soluzione e fornire manutenzione continua"],
+      "benefits": ["Maggiore coinvolgimento e più tempo trascorso con il tuo brand", "Tassi di conversione più alti grazie a percorsi intuitivi", "Esperienze di marca memorabili che ti distinguono dalla concorrenza", "Soluzioni accessibili che raggiungono il pubblico più ampio possibile", "Piattaforme scalabili che crescono con la tua attività"]
+    },
+    "realtime3d": {
+      "title": "3D in tempo reale",
+      "description": "Creiamo ambienti e visualizzazioni 3D dinamici renderizzati in tempo reale per esperienze fluide. Sfruttiamo tecnologie all'avanguardia per dare vita agli spazi digitali con un realismo e prestazioni senza precedenti.",
+      "features": ["Modellazione 3D ad alta fedeltà", "Illuminazione e fisica in tempo reale", "Ottimizzato per web e mobile", "Manipolazione interattiva degli oggetti", "Personalizzazione dell'ambiente"],
+      "longDescription": "Le nostre soluzioni 3D in tempo reale sfruttano la potenza delle tecnologie di rendering all'avanguardia per creare ambienti immersivi e interattivi che rispondono istantaneamente alle azioni dell'utente. Siamo specializzati nella creazione di visualizzazioni 3D ad alta fedeltà che mantengono le prestazioni su web e mobile, permettendo agli utenti di esplorare e interagire con spazi digitali in modi prima impossibili senza hardware specializzato.",
+      "process": ["Pianificazione degli asset: definire gli asset 3D, le interazioni e i requisiti tecnici", "Modellazione e texturing 3D: creare modelli 3D ottimizzati con il giusto livello di dettaglio", "Allestimento dell'ambiente: costruire lo spazio 3D con luci, fisica ed elementi interattivi", "Ottimizzazione delle prestazioni: garantire un rendering fluido sulle piattaforme target", "Integrazione: collegare l'esperienza 3D ai sistemi e alle piattaforme esistenti", "Test e rifinitura: perfezionare l'esperienza per il massimo impatto e usabilità"],
+      "benefits": ["Visualizzazione immersiva dei prodotti che favorisce l'acquisto", "Ambienti di formazione interattivi che migliorano la memorizzazione", "Spazi virtuali che eliminano i limiti geografici", "Narrazione coinvolgente tramite storie 3D esplorabili", "Costi ridotti rispetto alla prototipazione fisica"]
+    },
+    "gamification": {
+      "title": "Gamification",
+      "description": "Implementiamo meccaniche di gioco strategiche per aumentare il coinvolgimento e stimolare interazioni significative. Le nostre soluzioni di gamification trasformano attività di routine in esperienze avvincenti che motivano gli utenti e raggiungono gli obiettivi di business.",
+      "features": ["Sistemi di ricompensa e progressione", "Meccaniche competitive e collaborative", "Analisi e insight sulle prestazioni", "Integrazione della psicologia comportamentale", "Difficoltà adattiva"],
+      "longDescription": "I nostri servizi di gamification trasformano esperienze digitali ordinarie in interazioni coinvolgenti e motivanti applicando i principi del game design a contesti non ludici. Implementiamo in modo strategico sistemi di ricompensa, elementi di competizione e meccaniche di progressione che fanno leva sulla motivazione intrinseca ed estrinseca, orientando il comportamento degli utenti e raccogliendo al contempo dati preziosi su coinvolgimento e prestazioni.",
+      "process": ["Analisi comportamentale: comprendere le motivazioni degli utenti e gli obiettivi di business", "Progettazione delle meccaniche: creare gli elementi di gioco e le strutture di ricompensa adeguati", "Mappatura della progressione: progettare percorsi con sfide e ricompense crescenti", "Integrazione analitica: implementare sistemi di misurazione del coinvolgimento", "Design visivo: creare interfacce accattivanti che comunicano progresso e risultati", "Test e iterazione: perfezionare le meccaniche in base al comportamento e al feedback degli utenti"],
+      "benefits": ["Maggiore coinvolgimento e fidelizzazione", "Tassi di completamento più alti per i contenuti formativi", "Migliore raccolta di dati grazie alla partecipazione volontaria", "Maggiore fedeltà al brand grazie al rinforzo positivo", "Insight preziosi sul comportamento e sulle preferenze degli utenti"]
+    },
+    "digital": {
+      "title": "Soluzioni digitali",
+      "description": "Sviluppiamo prodotti digitali all'avanguardia su misura per risolvere sfide aziendali complesse con tecnologie innovative. Le nostre soluzioni uniscono eccellenza tecnica e visione creativa per offrire esperienze digitali trasformative.",
+      "features": ["Sviluppo software su misura", "Integrazione di sistemi", "Soluzioni cloud", "Visualizzazione dei dati", "Consulenza per la trasformazione digitale"],
+      "longDescription": "La nostra pratica di soluzioni digitali fornisce software e piattaforme su misura che affrontano sfide aziendali complesse con tecnologie innovative. Uniamo pensiero strategico ed esperienza tecnica per creare prodotti digitali scalabili, sicuri e facili da usare che favoriscono efficienza, coinvolgimento e crescita. Dalle applicazioni aziendali alle piattaforme rivolte ai clienti, costruiamo soluzioni che trasformano il modo in cui le organizzazioni operano e si connettono con il loro pubblico.",
+      "process": ["Analisi dei requisiti: comprendere a fondo il problema e le esigenze di business", "Architettura della soluzione: progettare le fondamenta tecniche e i componenti del sistema", "Sviluppo agile: costruire la soluzione in cicli iterativi con feedback regolari", "Integrazione: collegarsi ai sistemi e alle fonti di dati esistenti", "Garanzia di qualità: test rigorosi su funzionalità, sicurezza e prestazioni", "Rilascio e supporto: lanciare la soluzione e fornire manutenzione continua"],
+      "benefits": ["Operazioni semplificate grazie ad automazione e ottimizzazione dei flussi", "Decisioni migliori grazie a un migliore accesso e visualizzazione dei dati", "Migliori esperienze cliente tramite punti di contatto digitali intuitivi", "Infrastruttura scalabile che cresce con la tua attività", "Vantaggio competitivo grazie a capacità digitali innovative"]
+    }
+  }
+}

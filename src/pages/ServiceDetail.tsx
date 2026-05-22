@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeftIcon, CheckIcon } from 'lucide-react';
 import { services } from './AllServices';
 import GlowCard from '../components/GlowCard';
 import SpotlightButton from '../components/SpotlightButton';
 const ServiceDetail = () => {
+  const { t } = useTranslation();
   const {
     serviceId
   } = useParams();
@@ -29,17 +31,21 @@ const ServiceDetail = () => {
     return <main className="pt-24 pb-16 bg-black min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center py-20">
-            <h1 className="text-3xl font-bold mb-4">Service Not Found</h1>
+            <h1 className="text-3xl font-bold mb-4">{t('serviceDetail.notFoundTitle')}</h1>
             <p className="text-gray-400 mb-8">
-              The service you're looking for doesn't exist or has been removed.
+              {t('serviceDetail.notFoundText')}
             </p>
             <SpotlightButton to="/services" variant="primary">
-              Back to Services
+              {t('serviceDetail.back')}
             </SpotlightButton>
           </div>
         </div>
       </main>;
   }
+  const title = t(`services.${service.key}.title`);
+  const process = t(`services.${service.key}.process`, { returnObjects: true }) as string[];
+  const benefits = t(`services.${service.key}.benefits`, { returnObjects: true }) as string[];
+  const features = t(`services.${service.key}.features`, { returnObjects: true }) as string[];
   return <main className="pt-24 pb-16 bg-black min-h-screen">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#F4A622]/5 rounded-full blur-3xl"></div>
@@ -50,7 +56,7 @@ const ServiceDetail = () => {
         <div className="mb-8">
           <Link to="/services" className="inline-flex items-center text-gray-400 hover:text-[#F4A622] transition-colors duration-300">
             <ArrowLeftIcon size={16} className="mr-2" />
-            <span>Back to Services</span>
+            <span>{t('serviceDetail.back')}</span>
           </Link>
         </div>
         {/* Service header */}
@@ -58,10 +64,10 @@ const ServiceDetail = () => {
           <div className="bg-[#F4A622]/10 p-6 rounded-lg">{service.icon}</div>
           <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {service.title}
+              {title}
             </h1>
             <p className="text-xl text-gray-300 max-w-4xl">
-              {service.description}
+              {t(`services.${service.key}.description`)}
             </p>
           </div>
         </div>
@@ -69,11 +75,11 @@ const ServiceDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           <div className="lg:col-span-2">
             <div className="mb-12">
-              <h2 className="text-2xl font-bold mb-6 text-white">Overview</h2>
-              <p className="text-gray-300 mb-6">{service.longDescription}</p>
-              <h3 className="text-xl font-bold mb-4 text-white">Our Process</h3>
+              <h2 className="text-2xl font-bold mb-6 text-white">{t('serviceDetail.overview')}</h2>
+              <p className="text-gray-300 mb-6">{t(`services.${service.key}.longDescription`)}</p>
+              <h3 className="text-xl font-bold mb-4 text-white">{t('serviceDetail.ourProcess')}</h3>
               <div className="space-y-4">
-                {service.process.map((step, index) => <div key={index} className="flex items-start">
+                {process.map((step, index) => <div key={index} className="flex items-start">
                     <div className="bg-[#F4A622]/10 text-[#F4A622] flex items-center justify-center w-8 h-8 rounded-lg mr-4 flex-shrink-0 mt-0.5">
                       {index + 1}
                     </div>
@@ -83,10 +89,10 @@ const ServiceDetail = () => {
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-6 text-white">
-                Key Benefits
+                {t('serviceDetail.keyBenefits')}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {service.benefits.map((benefit, index) => <div key={index} className="flex items-start bg-black/50 border border-[#F4A622]/10 p-4 rounded-lg">
+                {benefits.map((benefit, index) => <div key={index} className="flex items-start bg-black/50 border border-[#F4A622]/10 p-4 rounded-lg">
                     <CheckIcon size={20} className="text-[#F4A622] mr-3 mt-0.5 flex-shrink-0" />
                     <p className="text-gray-300">{benefit}</p>
                   </div>)}
@@ -97,20 +103,20 @@ const ServiceDetail = () => {
             <div className="sticky top-24">
               <GlowCard borderRadius={16} className="p-6">
                 <h3 className="text-xl font-bold mb-6 text-white">
-                  Key Features
+                  {t('serviceDetail.keyFeatures')}
                 </h3>
                 <ul className="space-y-4 mb-8">
-                  {service.features.map((feature, index) => <li key={index} className="flex items-start">
+                  {features.map((feature, index) => <li key={index} className="flex items-start">
                       <CheckIcon size={20} className="text-[#F4A622] mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-300">{feature}</span>
                     </li>)}
                 </ul>
                 <div className="space-y-4">
                   <SpotlightButton to="/contact" variant="primary" fullWidth>
-                    Request a Consultation
+                    {t('serviceDetail.requestConsultation')}
                   </SpotlightButton>
                   <SpotlightButton to="/services" variant="secondary" fullWidth>
-                    Explore Other Services
+                    {t('serviceDetail.exploreOther')}
                   </SpotlightButton>
                 </div>
               </GlowCard>
@@ -120,14 +126,13 @@ const ServiceDetail = () => {
         {/* Contact CTA */}
         <GlowCard borderRadius={20} className="p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">
-            Ready to discuss your project?
+            {t('serviceDetail.ctaHeading')}
           </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's talk about how our {service.title.toLowerCase()} services can
-            help you achieve your goals.
+            {t('serviceDetail.ctaText', { service: title.toLowerCase() })}
           </p>
           <SpotlightButton to="/contact" variant="primary" size="lg">
-            Contact Us
+            {t('serviceDetail.contactUs')}
           </SpotlightButton>
         </GlowCard>
       </div>

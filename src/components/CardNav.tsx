@@ -25,8 +25,7 @@ export interface CardNavProps {
   ease?: string;
   baseColor?: string;
   menuColor?: string;
-  buttonBgColor?: string;
-  buttonTextColor?: string;
+  cta?: React.ReactNode;
 }
 
 const isExternal = (href: string) => href.startsWith('mailto:') || href.startsWith('http') || href.startsWith('tel:');
@@ -40,8 +39,7 @@ const CardNav: React.FC<CardNavProps> = ({
   ease = 'power3.out',
   baseColor = '#fff',
   menuColor,
-  buttonBgColor,
-  buttonTextColor
+  cta
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -210,14 +208,9 @@ const CardNav: React.FC<CardNavProps> = ({
             )}
           </Link>
 
-          <Link
-            to="/contact"
-            onClick={closeMenu}
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300 no-underline"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-          >
-            Get Started
-          </Link>
+          <div className="card-nav-cta flex items-center order-3 md:order-none">
+            {cta}
+          </div>
         </div>
 
         <div

@@ -1,24 +1,22 @@
 import React from 'react';
 import { MonitorIcon, BoxIcon, Gamepad2Icon, GlobeIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import CardSwap, { Card } from './CardSwap';
 import SpotlightButton from './SpotlightButton';
 const Services = () => {
+  const { t } = useTranslation();
   const services = [{
-    icon: <MonitorIcon size={32} className="text-[#F4A622]" />,
-    title: 'Interactive Experiences',
-    description: 'Engaging digital solutions that captivate audiences through immersive interactivity and responsive design.'
+    key: 'interactive',
+    icon: <MonitorIcon size={32} className="text-[#F4A622]" />
   }, {
-    icon: <BoxIcon size={32} className="text-[#F4A622]" />,
-    title: 'Real-time 3D',
-    description: 'Dynamic 3D environments and visualizations rendered in real-time for seamless user experiences.'
+    key: 'realtime3d',
+    icon: <BoxIcon size={32} className="text-[#F4A622]" />
   }, {
-    icon: <Gamepad2Icon size={32} className="text-[#F4A622]" />,
-    title: 'Gamification',
-    description: 'Strategic implementation of game mechanics to enhance user engagement and drive meaningful interactions.'
+    key: 'gamification',
+    icon: <Gamepad2Icon size={32} className="text-[#F4A622]" />
   }, {
-    icon: <GlobeIcon size={32} className="text-[#F4A622]" />,
-    title: 'Digital Solutions',
-    description: 'Cutting-edge digital products tailored to solve complex business challenges with innovative technology.'
+    key: 'digital',
+    icon: <GlobeIcon size={32} className="text-[#F4A622]" />
   }];
   return <section id="services" className="relative bg-black overflow-x-clip pt-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -28,15 +26,14 @@ const Services = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: heading + CTA */}
           <div className="pb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="text-[#F4A622]">Services</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F4A622]">
+              {t('home.servicesHeading')}
             </h2>
             <p className="text-gray-400 max-w-md mb-8">
-              Transforming ideas into immersive digital experiences through a
-              focused set of specialized services.
+              {t('home.servicesText')}
             </p>
             <SpotlightButton to="/services" variant="secondary" size="lg">
-              Discover All Services
+              {t('home.discoverAll')}
             </SpotlightButton>
           </div>
           {/* Right: animated card showcase — pushed down so the footer crops the bottom of the cards */}
@@ -47,9 +44,9 @@ const Services = () => {
                     {service.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-white">
-                    {service.title}
+                    {t(`services.${service.key}.title`)}
                   </h3>
-                  <p className="text-gray-400">{service.description}</p>
+                  <p className="text-gray-400">{t(`services.${service.key}.description`)}</p>
                 </Card>)}
             </CardSwap>
           </div>
