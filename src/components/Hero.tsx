@@ -1,72 +1,52 @@
 import React from 'react';
 import { ChevronRightIcon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import SpotlightButton from './SpotlightButton';
+import Plasma from './Plasma';
+import RotatingText from './RotatingText';
 const Hero = () => {
-  return <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16">
+  return <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-black">
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#F4A622]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#F4A622]/5 rounded-full blur-3xl"></div>
-        {/* Hexagon grid background */}
-        <div className="absolute inset-0 opacity-20">
-          {Array.from({
-          length: 10
-        }).map((_, i) => <div key={i} className="absolute border border-[#F4A622]/20" style={{
-          width: `${Math.random() * 150 + 50}px`,
-          height: `${Math.random() * 150 + 50}px`,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-          transform: 'rotate(45deg)'
-        }}></div>)}
-        </div>
-        {/* Animated bubbles */}
-        {Array.from({
-        length: 8
-      }).map((_, i) => <div key={i} className="absolute rounded-full bg-[#F4A622] opacity-70" style={{
-        width: `${Math.random() * 10 + 5}px`,
-        height: `${Math.random() * 10 + 5}px`,
-        bottom: '0%',
-        left: `${Math.random() * 100}%`,
-        animation: `rise ${Math.random() * 10 + 15}s linear infinite`,
-        animationDelay: `${Math.random() * 5}s`
-      }}></div>)}
+        <Plasma color="#F4A622" speed={0.6} direction="forward" scale={1.1} opacity={0.8} mouseInteractive={true} />
       </div>
+      {/* Contrast overlay to keep text readable and blend into the next section */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/10 to-black"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
         <div className="flex flex-col items-center">
-          <img src="/image.png" alt="IMA Logo" className="w-32 h-32 mb-8 animate-pulse" />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-            <span className="text-[#F4A622]">Immersive</span> Alchemy
+          <img src="/image.png" alt="IMA Logo" className="w-32 h-32 mb-6 animate-pulse" />
+          <p className="text-sm uppercase tracking-[0.3em] text-[#F4A622] mb-5">
+            Immersive Alchemy
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+            <span>We build</span>
+            <RotatingText
+              texts={['Immersive', 'Interactive', 'Real-time 3D', 'Gamified']}
+              mainClassName="px-3 md:px-4 bg-[#F4A622] text-black overflow-hidden py-1 md:py-2 justify-center rounded-lg"
+              staggerFrom="last"
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-120%' }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-1 md:pb-2"
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+              rotationInterval={2200}
+            />
+            <span>experiences</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mb-10">
-            Transforming digital experiences through interactive technology,
-            real-time 3D, and innovative solutions.
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-10">
+            Transforming ideas into immersive digital experiences through
+            interactive technology and real-time 3D.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/work">
-              <button className="bg-[#F4A622] hover:bg-[#F4A622]/80 text-black px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300 flex items-center justify-center">
-                Explore Our Work
-                <ChevronRightIcon size={20} className="ml-2" />
-              </button>
-            </Link>
-            <a href="#contact">
-              <button className="border border-[#F4A622] text-[#F4A622] hover:bg-[#F4A622]/10 px-8 py-3 rounded-sm text-lg font-medium transition-all duration-300">
-                Get in Touch
-              </button>
-            </a>
+            <SpotlightButton to="/services" variant="primary" size="lg">
+              Discover Our Services
+              <ChevronRightIcon size={20} className="ml-2" />
+            </SpotlightButton>
+            <SpotlightButton to="/contact" variant="secondary" size="lg">
+              Get in Touch
+            </SpotlightButton>
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes rise {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 0.7;
-          }
-          100% {
-            transform: translateY(-100vh) scale(0);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </section>;
 };
 export default Hero;

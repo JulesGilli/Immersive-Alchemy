@@ -1,0 +1,114 @@
+import React, { useState } from 'react';
+import { MailIcon, SendIcon, CheckIcon } from 'lucide-react';
+import GlowCard from '../components/GlowCard';
+import SpotlightButton from '../components/SpotlightButton';
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const handleChange = e => {
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = 'Please tell us a bit about your project';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (validate()) {
+      // In a real app, this would send the data to a backend
+      setSubmitted(true);
+      window.scrollTo(0, 0);
+    }
+  };
+  return <main className="pt-40 pb-16 bg-black min-h-screen">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#F4A622]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-[#F4A622]/5 rounded-full blur-3xl"></div>
+      </div>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
+        {submitted ? <div className="text-center py-10">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#F4A622]/20 mb-6">
+              <CheckIcon size={40} className="text-[#F4A622]" />
+            </div>
+            <h1 className="text-3xl font-bold mb-4">Message sent!</h1>
+            <p className="text-gray-300 mb-8">
+              Thanks for reaching out. I'll get back to you within 1-2 business
+              days to talk about your project.
+            </p>
+            <SpotlightButton to="/" variant="primary">
+              Back to Home
+            </SpotlightButton>
+          </div> : <>
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4">
+                Get in <span className="text-[#F4A622]">Touch</span>
+              </h1>
+              <p className="text-gray-300">
+                Tell me about your project and I'll get back to you to discuss
+                how we can bring it to life.
+              </p>
+            </div>
+            <GlowCard borderRadius={16} className="p-8">
+              <form onSubmit={handleSubmit}>
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-white font-medium mb-2" htmlFor="name">
+                      Name
+                    </label>
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className={`w-full bg-black border ${errors.name ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="Your name" />
+                    {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2" htmlFor="email">
+                      Email
+                    </label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className={`w-full bg-black border ${errors.email ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="your@email.com" />
+                    {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2" htmlFor="message">
+                      Your project
+                    </label>
+                    <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={5} className={`w-full bg-black border ${errors.message ? 'border-red-500' : 'border-[#F4A622]/30'} rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#F4A622]`} placeholder="Describe your idea, goals, and anything useful to know..." />
+                    {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+                  </div>
+                </div>
+                <SpotlightButton type="submit" variant="primary" size="lg" fullWidth className="mt-8">
+                  Send Message
+                  <SendIcon size={18} className="ml-2" />
+                </SpotlightButton>
+              </form>
+              <div className="mt-8 pt-6 border-t border-[#F4A622]/10 flex items-center justify-center text-gray-400">
+                <MailIcon size={18} className="text-[#F4A622] mr-2" />
+                <span>contact@immersivealchemy.com</span>
+              </div>
+            </GlowCard>
+          </>}
+      </div>
+    </main>;
+};
+export default Contact;
