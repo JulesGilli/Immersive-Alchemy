@@ -62,7 +62,7 @@ const navItems = [{
 export function App() {
   return <BrowserRouter>
       <div className="w-full min-h-screen bg-black text-white font-sans">
-        <CardNav logo="/image.png" logoAlt="IMA Logo" items={navItems} baseColor="rgba(20, 18, 16, 0.55)" menuColor="#F4A622" buttonBgColor="#F4A622" buttonTextColor="#000000" />
+        <CardNav logo="/ima-logo.svg" logoAlt="Immersive Alchemy logo" logoText="Immersive Alchemy" items={navItems} baseColor="rgba(20, 18, 16, 0.55)" menuColor="#F4A622" buttonBgColor="#F4A622" buttonTextColor="#000000" />
         <Routes>
           <Route path="/" element={<main>
                 <Hero />

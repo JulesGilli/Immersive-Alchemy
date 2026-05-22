@@ -19,6 +19,7 @@ export type CardNavItem = {
 export interface CardNavProps {
   logo: string;
   logoAlt?: string;
+  logoText?: string;
   items: CardNavItem[];
   className?: string;
   ease?: string;
@@ -33,6 +34,7 @@ const isExternal = (href: string) => href.startsWith('mailto:') || href.startsWi
 const CardNav: React.FC<CardNavProps> = ({
   logo,
   logoAlt = 'Logo',
+  logoText,
   items,
   className = '',
   ease = 'power3.out',
@@ -198,9 +200,14 @@ const CardNav: React.FC<CardNavProps> = ({
           <Link
             to="/"
             onClick={closeMenu}
-            className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none"
+            className="logo-container flex items-center gap-2 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none"
           >
-            <img src={logo} alt={logoAlt} className="logo h-[28px]" />
+            <img src={logo} alt={logoAlt} className="logo h-[32px]" />
+            {logoText && (
+              <span className="font-semibold tracking-tight text-white text-[15px] md:text-[17px] whitespace-nowrap">
+                {logoText}
+              </span>
+            )}
           </Link>
 
           <Link
@@ -234,22 +241,22 @@ const CardNav: React.FC<CardNavProps> = ({
                   isExternal(lnk.href) ? (
                     <a
                       key={`${lnk.label}-${i}`}
-                      className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                      className="nav-card-link group inline-flex items-center gap-[6px] no-underline cursor-pointer transition-colors duration-300 hover:text-[#F4A622] text-[15px] md:text-[16px]"
                       href={lnk.href}
                       aria-label={lnk.ariaLabel}
                     >
-                      <ArrowUpRightIcon size={16} className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                      <ArrowUpRightIcon size={16} className="nav-card-link-icon shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                       {lnk.label}
                     </a>
                   ) : (
                     <Link
                       key={`${lnk.label}-${i}`}
-                      className="nav-card-link inline-flex items-center gap-[6px] no-underline cursor-pointer transition-opacity duration-300 hover:opacity-75 text-[15px] md:text-[16px]"
+                      className="nav-card-link group inline-flex items-center gap-[6px] no-underline cursor-pointer transition-colors duration-300 hover:text-[#F4A622] text-[15px] md:text-[16px]"
                       to={lnk.href}
                       aria-label={lnk.ariaLabel}
                       onClick={closeMenu}
                     >
-                      <ArrowUpRightIcon size={16} className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                      <ArrowUpRightIcon size={16} className="nav-card-link-icon shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                       {lnk.label}
                     </Link>
                   )
