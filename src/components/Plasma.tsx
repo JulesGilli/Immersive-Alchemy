@@ -8,6 +8,9 @@ interface PlasmaProps {
   scale?: number;
   opacity?: number;
   mouseInteractive?: boolean;
+  maxDpr?: number;
+  resolutionScale?: number;
+  maxFps?: number;
 }
 
 const hexToRgb = (hex: string): [number, number, number] => {
@@ -94,7 +97,10 @@ export const Plasma: React.FC<PlasmaProps> = ({
   direction = 'forward',
   scale = 1,
   opacity = 1,
-  mouseInteractive = true
+  mouseInteractive = true,
+  maxDpr = 1,
+  resolutionScale = 0.7,
+  maxFps = 30
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -114,7 +120,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
         webgl: 2,
         alpha: true,
         antialias: false,
-        dpr: Math.min(window.devicePixelRatio || 1, 2)
+        dpr: Math.min(window.devicePixelRatio || 1, maxDpr)
       });
     } catch {
       return;
@@ -164,9 +170,12 @@ export const Plasma: React.FC<PlasmaProps> = ({
 
     const setSize = () => {
       const rect = containerEl.getBoundingClientRect();
-      const width = Math.max(1, Math.floor(rect.width));
-      const height = Math.max(1, Math.floor(rect.height));
+      const width = Math.max(1, Math.floor(rect.width * resolutionScale));
+      const height = Math.max(1, Math.floor(rect.height * resolutionScale));
       renderer.setSize(width, height);
+      // Render at reduced resolution but stretch to fill — the soft plasma + blur overlay hide the upscaling.
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
       const res = program.uniforms.iResolution.value as Float32Array;
       res[0] = gl.drawingBufferWidth;
       res[1] = gl.drawingBufferHeight;
@@ -181,9 +190,14 @@ export const Plasma: React.FC<PlasmaProps> = ({
     let isVisible = true;
     const t0 = performance.now();
 
-    const loop = (t: number) => {
-      if (contextLost || !isVisible) return;
-      let timeValue = (t - t0) * 0.001;
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const frameInterval = maxFps > 0 ? 1000 / maxFps : 0;
+    let lastFrameTime = 0;
+
+    const renderFrame = (timeValue: number) => {
       if (direction === 'pingpong') {
         const pingpongDuration = 10;
         const segmentTime = timeValue % pingpongDuration;
@@ -197,7 +211,15 @@ export const Plasma: React.FC<PlasmaProps> = ({
         (program.uniforms.iTime as any).value = timeValue;
       }
       renderer.render({ scene: mesh });
+    };
+
+    const loop = (t: number) => {
+      if (contextLost || !isVisible) return;
       raf = requestAnimationFrame(loop);
+      // Throttle to maxFps: cheap for a background, much lighter on weak GPUs.
+      if (frameInterval && t - lastFrameTime < frameInterval) return;
+      lastFrameTime = t;
+      renderFrame((t - t0) * 0.001);
     };
 
     const handleContextLost = (e: Event) => {
@@ -207,6 +229,10 @@ export const Plasma: React.FC<PlasmaProps> = ({
     };
     const handleContextRestored = () => {
       contextLost = false;
+      if (prefersReducedMotion) {
+        renderFrame(0);
+        return;
+      }
       if (isVisible) {
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(loop);
@@ -218,14 +244,18 @@ export const Plasma: React.FC<PlasmaProps> = ({
     const io = new IntersectionObserver(([entry]) => {
       const wasVisible = isVisible;
       isVisible = entry.isIntersecting;
-      if (isVisible && !wasVisible && !contextLost) {
+      if (isVisible && !wasVisible && !contextLost && !prefersReducedMotion) {
         cancelAnimationFrame(raf);
         raf = requestAnimationFrame(loop);
       }
     }, { threshold: 0 });
     io.observe(containerEl);
 
-    raf = requestAnimationFrame(loop);
+    if (prefersReducedMotion) {
+      renderFrame(0);
+    } else {
+      raf = requestAnimationFrame(loop);
+    }
 
     return () => {
       cancelAnimationFrame(raf);
@@ -240,7 +270,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
         containerEl?.removeChild(canvas);
       } catch {}
     };
-  }, [color, speed, direction, scale, opacity, mouseInteractive]);
+  }, [color, speed, direction, scale, opacity, mouseInteractive, maxDpr, resolutionScale, maxFps]);
 
   return <div ref={containerRef} className="w-full h-full relative overflow-hidden" />;
 };
